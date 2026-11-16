@@ -1,0 +1,25 @@
+# Manifest reference: https://docs.snowflake.com/en/developer-guide/native-apps/manifest-reference
+#
+# manifest_version 2 turns on automated granting of privileges.
+# Read the security notes before choosing it:
+# https://docs.snowflake.com/en/developer-guide/native-apps/manifest-overview
+manifest_version: 2
+
+artifacts:
+  setup_script: setup_script.sql
+  readme: README.md
+  default_streamlit: core.ui
+
+configuration:
+  log_level: INFO
+  trace_level: OFF
+
+# Granted automatically at install / upgrade (manifest v2 only).
+# Note: this list can't change in a patch, only in a new version.
+privileges:
+  - CREATE EXTERNAL ACCESS INTEGRATION:
+      description: "Lets the app create an External Access Integration so it can call api.open-meteo.com"
+
+# Called when the consumer approves or declines an app specification.
+lifecycle_callbacks:
+  specification_action: core.on_spec_update

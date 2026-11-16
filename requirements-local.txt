@@ -1,0 +1,6 @@
+# Local development only. Keep streamlit pinned to the version in
+# src/streamlit/environment.yml so local behaviour matches Snowflake.
+streamlit==1.45.1
+pandas
+requests
+snowflake-snowpark-python

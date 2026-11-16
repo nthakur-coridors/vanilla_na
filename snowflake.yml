@@ -1,0 +1,25 @@
+# Snowflake CLI project definition (definition_version 2)
+# Docs: https://docs.snowflake.com/en/developer-guide/snowflake-cli/native-apps/project-definitions
+definition_version: 2
+
+entities:
+  pkg:
+    type: application package
+    identifier: weather_app_pkg
+    manifest: app/manifest.yml
+    artifacts:
+      # app/ -> stage root (manifest.yml, setup_script.sql, README.md)
+      - src: app/*
+        dest: ./
+      # Streamlit UI (environment.yml must sit next to the main Streamlit file)
+      - src: src/streamlit/*
+        dest: streamlit/
+      # Python handlers used by UDFs and stored procedures
+      - src: src/python/*
+        dest: python/
+
+  app:
+    type: application
+    identifier: weather_app
+    from:
+      target: pkg

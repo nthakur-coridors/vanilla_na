@@ -1,0 +1,11 @@
+# Packages for the Streamlit app inside the Native App (warehouse runtime).
+# Must live in the same folder as streamlit_app.py.
+# Pin Streamlit to a version Snowflake supports, and use the SAME version locally.
+# Supported versions: https://docs.snowflake.com/en/developer-guide/streamlit/app-development/dependency-management
+name: sf_env
+channels:
+  - snowflake
+dependencies:
+  - streamlit=1.45.1
+  - snowflake-native-apps-permission
+  - pandas
